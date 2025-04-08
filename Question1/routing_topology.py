@@ -51,16 +51,16 @@ def run():
     h2, h8 = net.get('h2', 'h8')
 
     for i in range(1):
-        print(f"\nTest {i+1}: h1 -> h3")
-        net.ping([h1, h3])
+        print(f"\nTest {i+1}: h3 -> h1")
+        h3.cmd('ping -c 1', h1.IP())
         print(f"\nTest {i+1}: h5 -> h7")
-        net.ping([h5, h7])
-        print(f"\nTest {i+1}: h2 -> h8")
-        net.ping([h2, h8])
+        h5.cmd('ping -c 1', h7.IP())
+        print(f"\nTest {i+1}: h8 -> h2")
+        h8.cmd('ping -c 1', h2.IP())
 
     CLI(net)
     # net.stop()
-# udo ovs-vsctl set Bridge s4 stp_enable=true
+# sudo ovs-vsctl set Bridge s4 stp_enable=true
 # h2 ping h8 -w 30
 # dpctl show
 
