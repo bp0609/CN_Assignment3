@@ -45,7 +45,7 @@ def run():
     net = Mininet(topo=topo, link=TCLink, switch=OVSSwitch)
     net.start()
 
-    print("\nRunning Ping Tests:\n")
+    print("\nRunning Ping Tests:")
     h1, h3 = net.get('h1', 'h3')
     h5, h7 = net.get('h5', 'h7')
     h2, h8 = net.get('h2', 'h8')
