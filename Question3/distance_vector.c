@@ -1,6 +1,7 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #define LINKCHANGES 1
+#define INFINITY 999
 /* ******************************************************************
 Programming assignment 3: implementing distributed, asynchronous,
                           distance vector routing.
@@ -68,7 +69,7 @@ struct event *evlist = NULL; /* the event list */
 
 float clocktime = 0.000;
 
-main()
+int main()
 {
     struct event *eventptr;
 
@@ -160,7 +161,7 @@ init() /* initialize the simulator */
         printf("It is likely that random number generation on your machine\n");
         printf("is different from what this emulator expects.  Please take\n");
         printf("a look at the routine jimsrand() in the emulator code. Sorry. \n");
-        exit();
+        exit(0);
     }
 
     clocktime = 0.0; /* initialize time to 0.0 */
@@ -258,7 +259,7 @@ printevlist()
 }
 
 /************************** TOLAYER2 ***************/
-tolayer2(packet) struct rtpkt packet;
+void tolayer2(struct rtpkt packet)
 
 {
     struct rtpkt *mypktptr;
@@ -344,3 +345,4 @@ tolayer2(packet) struct rtpkt packet;
         printf("    TOLAYER2: scheduling arrival on other side\n");
     insertevent(evptr);
 }
+// gcc distance_vector.c node0.c node1.c node2.c node3.c -o dv_routing
