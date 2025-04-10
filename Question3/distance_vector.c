@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define LINKCHANGES 1
-#define INFINITY 999
 /* ******************************************************************
 Programming assignment 3: implementing distributed, asynchronous,
                           distance vector routing.
@@ -69,7 +68,7 @@ struct event *evlist = NULL; /* the event list */
 
 float clocktime = 0.000;
 
-int main()
+main()
 {
     struct event *eventptr;
 
@@ -86,7 +85,7 @@ int main()
             evlist->prev = NULL;
         if (TRACE > 1)
         {
-            printf("MAIN: rcv event, t=%.3f, at %d",
+            printf("\nMAIN: rcv event, t=%.3f, at %d",
                    eventptr->evtime, eventptr->eventity);
             if (eventptr->evtype == FROM_LAYER2)
             {
@@ -259,7 +258,7 @@ printevlist()
 }
 
 /************************** TOLAYER2 ***************/
-void tolayer2(struct rtpkt packet)
+tolayer2(packet) struct rtpkt packet;
 
 {
     struct rtpkt *mypktptr;
@@ -345,4 +344,3 @@ void tolayer2(struct rtpkt packet)
         printf("    TOLAYER2: scheduling arrival on other side\n");
     insertevent(evptr);
 }
-// gcc distance_vector.c node0.c node1.c node2.c node3.c -o dv_routing
